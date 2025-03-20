@@ -1,13 +1,36 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Ensure everything stays in one line */
+    gap: 10px; /* Adjust spacing */
+    background-color: #111827; /* Same as the previous background */
+    padding: 10px;
+    border-radius: 8px;
+    flex-wrap: nowrap;
+  }
+  
+  .filters-container select,
+  .filters-container .checkbox-group {
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  .checkbox-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+
+  .footer {
+    padding: 2rem 1rem; /* Padding badhao taake elements properly align ho */
+    background-color: #000; /* Pure black background */
+    text-align: center;
+  }
+  
