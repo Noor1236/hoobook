@@ -49,8 +49,14 @@ function Homepage() {
   };
 
   const handleSearch = () => {
+    const searchQuery = search.city.trim().toLowerCase();
+    if (!searchQuery) {
+      setFilteredHotels([]); // Reset if search is empty
+      return;
+    }
+
     const results = hotels.filter((hotel) =>
-      hotel.city.toLowerCase().includes(search.city.toLowerCase())
+      hotel.city.toLowerCase().includes(searchQuery)
     );
     setFilteredHotels(results);
   };
@@ -109,24 +115,27 @@ function Homepage() {
       <div className="mt-6 text-center">
         <h2 className="text-2xl text-purple-500">Available Hotels</h2>
         <p className="text-gray-400 mt-2">
-          Explore the best hotels across different cities and make your stay comfortable.
+          Explore the best hotels across different cities and make your stay
+          comfortable.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {hotels.map((hotel) => (
-            <div
-              key={hotel.id}
-              onClick={() => goToHotelDetail(hotel.id)}
-              className="bg-gray-900 p-4 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
-            >
-              <img
-                src={hotel.image}
-                alt={hotel.name}
-                className="w-full h-48 object-cover rounded-md mb-2"
-              />
-              <h3 className="text-lg text-purple-400">{hotel.name}</h3>
-              <p>{hotel.city}</p>
-            </div>
-          ))}
+          {(filteredHotels.length > 0 ? filteredHotels : hotels).map(
+            (hotel) => (
+              <div
+                key={hotel.id}
+                onClick={() => goToHotelDetail(hotel.id)}
+                className="bg-gray-900 p-4 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105"
+              >
+                <img
+                  src={hotel.image}
+                  alt={hotel.name}
+                  className="w-full h-48 object-cover rounded-md mb-2"
+                />
+                <h3 className="text-lg text-purple-400">{hotel.name}</h3>
+                <p>{hotel.city}</p>
+              </div>
+            )
+          )}
         </div>
       </div>
 
